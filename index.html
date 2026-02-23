@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TOP SECRET — Michelle 💛</title>
+  <meta name="description" content="A little website to celebrate us." />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --gold: #f6c453;
+      --pink: #ff6fae;
+      --blue: #6fd3ff;
+      --ring: rgba(246,196,83,0.35);
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --radius: 22px;
+      --max: 1080px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(255,111,174,0.18), transparent 60%),
+        radial-gradient(900px 540px at 85% 18%, rgba(111,211,255,0.18), transparent 55%),
+        radial-gradient(900px 700px at 45% 100%, rgba(246,196,83,0.10), transparent 60%),
+        linear-gradient(180deg, #070a14, var(--bg) 40%, #050811);
+      min-height: 100vh;
+    }
+
+    a{ color: inherit; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 90px; }
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      margin: 10px 0 26px;
+    }
+    .badge{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 10px 12px;
+      display:flex; gap:10px; align-items:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .dot{ width:8px; height:8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 6px rgba(246,196,83,0.12); }
+
+    .btn{
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.09); }
+
+    .hero{
+      position:relative;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
+        radial-gradient(900px 380px at 35% 25%, rgba(255,111,174,0.14), transparent 60%),
+        radial-gradient(900px 380px at 70% 20%, rgba(111,211,255,0.14), transparent 60%);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 260px at 20% 0%, rgba(246,196,83,0.25), transparent 60%),
+        radial-gradient(800px 300px at 90% 10%, rgba(255,111,174,0.20), transparent 55%);
+      filter: blur(18px);
+      opacity: 0.8;
+      pointer-events:none;
+    }
+
+    .hero-inner{ position: relative; display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items:center; }
+    @media (max-width: 860px){ .hero-inner{ grid-template-columns: 1fr; } }
+
+    h1{
+      margin: 6px 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 16px;
+      max-width: 62ch;
+      white-space: pre-line;
+    }
+    .meta{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 10px;
+    }
+    .pill{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 999px;
+      padding: 9px 10px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 14px 50px rgba(0,0,0,0.35);
+    }
+
+    .right{
+      display:grid; gap: 12px;
+    }
+
+    .codebox{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.55;
+    }
+    .codebox .k{ color: var(--blue); }
+    .codebox .v{ color: var(--gold); }
+    .codebox .p{ color: var(--pink); }
+
+    section{ margin-top: 22px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 860px){ .grid{ grid-template-columns: 1fr; } }
+
+    h2{
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .muted{ color: var(--muted); }
+
+    .timeline{
+      display:grid;
+      gap: 10px;
+    }
+    .event{
+      display:flex; gap: 12px; align-items:flex-start;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .date{
+      flex: 0 0 auto;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 0 0 6px rgba(246,196,83,0.08);
+    }
+    .event h3{ margin: 2px 0 6px; font-size: 15px; }
+    .event p{ margin: 0; color: var(--muted); line-height: 1.5; font-size: 14px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
+    }
+    .ph{
+      position:relative;
+      border-radius: 18px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      min-height: 130px;
+    }
+    .ph img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.03);
+      transform: scale(1.02);
+    }
+    .ph span{
+      position:absolute;
+      left:10px; bottom:10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      background: rgba(0,0,0,0.42);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
+    }
+
+    .w4{ grid-column: span 4; }
+    .w5{ grid-column: span 5; }
+    .w6{ grid-column: span 6; }
+    .w7{ grid-column: span 7; }
+    .w12{ grid-column: span 12; }
+    @media (max-width: 860px){
+      .w4,.w5,.w6,.w7{ grid-column: span 12; }
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer{
+      margin-top: 26px;
+      text-align:center;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .heart{
+      display:inline-block;
+      transform: translateY(1px);
+      color: var(--pink);
+      text-shadow: 0 0 22px rgba(255,111,174,0.25);
+    }
+
+    .spark{
+      position:absolute;
+      width: 240px;
+      height: 240px;
+      right: -70px;
+      top: -90px;
+      background: radial-gradient(circle at 30% 30%, rgba(246,196,83,0.35), transparent 60%);
+      filter: blur(2px);
+      opacity: 0.8;
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+
+    /* =========================
+       TOP SECRET ACCESS SCREEN
+       ========================= */
+    .gate{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(255,111,174,0.22), transparent 60%),
+        radial-gradient(900px 540px at 85% 18%, rgba(111,211,255,0.22), transparent 55%),
+        radial-gradient(900px 700px at 45% 100%, rgba(246,196,83,0.14), transparent 60%),
+        linear-gradient(180deg, #050812, #070a14 35%, #050811);
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .gate.hidden{
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+    }
+    .gate-card{
+      width: min(720px, 100%);
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      box-shadow: 0 22px 80px rgba(0,0,0,0.65);
+      overflow: hidden;
+      position: relative;
+    }
+    .gate-card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(780px 320px at 20% 0%, rgba(246,196,83,0.26), transparent 60%),
+        radial-gradient(900px 360px at 90% 10%, rgba(255,111,174,0.22), transparent 55%);
+      filter: blur(22px);
+      opacity: .9;
+      pointer-events:none;
+    }
+    .gate-inner{
+      position: relative;
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+    .gate-top{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .gate-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family: var(--mono);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.86);
+      font-size: 12px;
+    }
+    .gate-title .lock{
+      width: 28px; height: 28px;
+      border-radius: 10px;
+      display:grid; place-items:center;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 0 0 6px rgba(246,196,83,0.08);
+    }
+    .gate-h1{
+      margin: 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .gate-sub{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 64ch;
+      font-size: 14px;
+    }
+    .gate-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .gate-input{
+      flex: 1 1 260px;
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      outline: none;
+      background: rgba(0,0,0,0.28);
+      color: rgba(255,255,255,0.92);
+      box-shadow: 0 0 0 0 rgba(246,196,83,0);
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .gate-input:focus{
+      border-color: rgba(246,196,83,0.34);
+      box-shadow: 0 0 0 6px rgba(246,196,83,0.12);
+    }
+    .gate-btn{
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.92);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .gate-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.11); }
+    .gate-hint{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+      margin-top: 2px;
+    }
+    .gate-error{
+      display:none;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,111,174,0.95);
+      background: rgba(255,111,174,0.10);
+      border: 1px solid rgba(255,111,174,0.20);
+      padding: 10px 12px;
+      border-radius: 14px;
+    }
+    .gate-error.show{ display:block; }
+
+    /* prevent scroll while gated */
+    body.locked{ overflow: hidden; }
+  </style>
+</head>
+
+<body class="locked">
+  <!-- TOP SECRET ACCESS GATE -->
+  <div class="gate" id="gate" aria-hidden="false">
+    <div class="gate-card" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+      <div class="gate-inner">
+        <div class="gate-top">
+          <div class="gate-title">
+            <div class="lock">🔒</div>
+            <span>TOP SECRET ACCESS</span>
+          </div>
+          <div class="badge" style="margin:0;">
+            <span class="dot"></span>
+            <span>clearance_required</span>
+          </div>
+        </div>
+
+        <h1 class="gate-h1" id="gateTitle">Michelle’s Birthday Archive</h1>
+        <p class="gate-sub">
+          This page contains classified memories.<br/>
+          Enter the access phrase to continue.
+        </p>
+
+        <div class="gate-row">
+          <input
+            id="pass"
+            class="gate-input"
+            type="password"
+            inputmode="text"
+            autocomplete="off"
+            placeholder='Type: TOP SECRET'
+            aria-label="Access phrase"
+          />
+          <button class="gate-btn" id="enterBtn">enter()</button>
+        </div>
+
+        <div class="gate-error" id="gateErr">Access denied. Try again.</div>
+        <div class="gate-hint">Hint: it’s the project name.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN SITE -->
+  <div class="wrap">
+    <div class="topbar">
+      <div class="badge">
+        <span class="dot"></span>
+        <span>TOP_SECRET / birthday.build</span>
+      </div>
+      <button class="btn" onclick="window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'})">
+        jump_to_end()
+      </button>
+    </div>
+
+    <header class="hero">
+      <div class="spark"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="pill">for: <span id="herName">Michelle</span></div>
+          <h1>Happy Birthday, my love <span class="heart">♥</span></h1>
+
+          <p class="sub" id="loveLetter">Michelle,
+
+From the moment we met in 2016, my life quietly changed direction. I didn’t know all the ways back then — I just knew you mattered in a way that felt steady and real.
+
+Since then, we’ve built a life together piece by piece. Not the highlight-reel version — the real one. The tired days. The loud days. The days that tested us and the days that reminded me how lucky I am to walk through this world with you.
+
+Watching you become a mother has been one of the greatest privileges of my life. The love, strength, and patience you give our children — even on the hardest days — is something I admire more than I can ever properly explain. Our babies are safe, loved, and home because of you.
+
+You make ordinary moments feel warm. You make hard seasons survivable. You make our family what it is.
+
+This little website can’t capture everything we’ve lived, but it’s a reminder — of where we started, what we’ve built, and how grateful I am that I get to do all of it with you.
+
+Happy Birthday, my love.
+Always you. Always us.</p>
+
+          <div class="meta">
+            <div class="pill">since: <span id="sinceYear">2016</span></div>
+            <div class="pill">status: <span class="heart">still obsessed</span></div>
+            <div class="pill">build: <span>love + memories</span></div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="card">
+            <h2>Today’s build</h2>
+            <div class="codebox">
+              <div><span class="k">const</span> <span class="v">birthday</span> = <span class="p">"today"</span>;</div>
+              <div><span class="k">const</span> <span class="v">reason</span> = <span class="p">"because you’re you"</span>;</div>
+              <div><span class="k">let</span> <span class="v">love</span> = <span class="v">Infinity</span>;</div>
+              <div><span class="k">function</span> <span class="v">forever</span>() { <span class="k">return</span> <span class="v">love</span>; }</div>
+            </div>
+            <p class="muted" style="margin:10px 0 0;">
+              (P.S. You’re the best part of my life.)
+            </p>
+          </div>
+
+          <div class="card">
+            <h2>Project</h2>
+            <p class="muted" style="margin:0;">
+              <span style="font-family:var(--mono);">TOP SECRET</span> · clearance: <span class="heart">Michelle</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Our timeline</h2>
+        <p class="muted" style="margin:0 0 10px;">Three moments that changed everything.</p>
+        <div class="timeline" id="timeline">
+          <div class="event">
+            <div class="date">2016</div>
+            <div>
+              <h3>We met</h3>
+              <p>The day the future quietly showed up.</p>
+            </div>
+          </div>
+          <div class="event">
+            <div class="date">2018</div>
+            <div>
+              <h3>Our first baby</h3>
+              <p>Our love grew legs and laughter.</p>
+            </div>
+          </div>
+          <div class="event">
+            <div class="date">2020</div>
+            <div>
+              <h3>Our next baby</h3>
+              <p>More chaos, more joy, more family.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Reasons I love you</h2>
+        <p class="muted" style="margin:0 0 10px;">A small list. The real list is endless.</p>
+        <ul id="reasons">
+          <li>The way you love our kids — fiercely and gently.</li>
+          <li>How you turn ordinary days into something warm.</li>
+          <li>Your strength, especially when nobody sees it.</li>
+          <li>Your laugh. Your calm. Your spark.</li>
+          <li>You make “home” feel like a person.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Photo gallery</h2>
+      <p class="muted" style="margin:0 0 12px;">
+        These are our moments — then and now.
+      </p>
+
+      <div class="gallery">
+        <div class="ph w6">
+          <img src="images/photo1.jpg" alt="Michelle and I long ago">
+          <span>Where it all started.</span>
+        </div>
+        <div class="ph w6">
+          <img src="images/photo2.jpg" alt="Our kids">
+          <span>What love became.</span>
+        </div>
+        <div class="ph w5">
+          <img src="images/photo3.jpg" alt="Michelle recent">
+          <span>The heart of our home.</span>
+        </div>
+        <div class="ph w7">
+          <img src="images/photo4.jpg" alt="Michelle and me recent">
+          <span>Still us.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Promises</h2>
+        <p class="muted" style="margin:0 0 10px;">Tiny vows for the everyday.</p>
+        <ul>
+          <li>I’ll keep choosing you, loudly and softly.</li>
+          <li>I’ll protect your peace.</li>
+          <li>I’ll stay curious about you forever.</li>
+          <li>I’ll carry the load with you.</li>
+          <li>I’ll make sure you feel seen — always.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Next chapter</h2>
+        <p class="muted" style="margin:0 0 10px;">Things I can’t wait to do with you.</p>
+        <ul>
+          <li>A weekend away with no agenda.</li>
+          <li>One new tradition that’s just ours.</li>
+          <li>More photos like the first one — just older and happier.</li>
+          <li>More slow mornings. More laughs. More us.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>The ending (for now)</h2>
+      <p class="muted" style="margin:0;">
+        Happy Birthday, <span id="herName2">Michelle</span>. Thank you for being the best part of my life.
+        Here’s to more mornings, more laughs, more small miracles — and more of us.
+        <span class="heart">♥</span>
+      </p>
+    </section>
+
+    <footer>
+      built_with_love() · © <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // =========================
+    // TOP SECRET ACCESS LOGIC
+    // =========================
+    const gate = document.getElementById("gate");
+    const pass = document.getElementById("pass");
+    const enterBtn = document.getElementById("enterBtn");
+    const gateErr = document.getElementById("gateErr");
+
+    // Access phrase (edit if you want a different one)
+    const ACCESS_PHRASE = "TOP SECRET";
+
+    function normalize(s){
+      return (s || "").trim().replace(/\s+/g, " ").toUpperCase();
+    }
+
+    function unlock(){
+      gate.classList.add("hidden");
+      document.body.classList.remove("locked");
+      gate.setAttribute("aria-hidden", "true");
+      // small scroll nudge to feel like a "load"
+      window.setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 60);
+    }
+
+    function deny(){
+      gateErr.classList.add("show");
+      pass.value = "";
+      pass.focus();
+    }
+
+    function tryEnter(){
+      const attempt = normalize(pass.value);
+      if (attempt === normalize(ACCESS_PHRASE)) {
+        unlock();
+      } else {
+        deny();
+      }
+    }
+
+    enterBtn.addEventListener("click", tryEnter);
+    pass.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryEnter();
+      if (gateErr.classList.contains("show")) gateErr.classList.remove("show");
+    });
+
+    // Autofocus on load
+    window.addEventListener("load", () => pass.focus());
+  </script>
+</body>
+</html>
