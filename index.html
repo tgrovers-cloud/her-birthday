@@ -234,8 +234,39 @@
     .w6{ grid-column: span 6; }
     .w7{ grid-column: span 7; }
     .w12{ grid-column: span 12; }
+
     @media (max-width: 860px){
-      .w4,.w5,.w6,.w7{ grid-column: span 12; }
+      /* overall spacing */
+      .wrap{ padding: 18px 14px 70px; }
+      .hero{ padding: 20px 16px; }
+      .card{ padding: 16px; }
+      .topbar{ margin: 8px 0 18px; }
+
+      /* gallery becomes a 6-col grid so w2/w3 can be 2-across */
+      .gallery{ grid-template-columns: repeat(6, 1fr); }
+
+      /* map widths to 6-col mobile grid */
+      .w2{ grid-column: span 3; }  /* half width */
+      .w3{ grid-column: span 3; }  /* half width */
+      .w4{ grid-column: span 6; }  /* full width */
+      .w5{ grid-column: span 6; }  /* full width */
+      .w6{ grid-column: span 6; }  /* full width */
+      .w7{ grid-column: span 6; }  /* full width */
+      .w12{ grid-column: span 6; } /* full width */
+
+      /* slightly shorter tiles + readable captions */
+      .ph{ min-height: 95px; }
+      .ph span{
+        font-size: 11px;
+        padding: 7px 9px;
+        left: 8px;
+        bottom: 8px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .gate-row{ flex-direction: column; align-items: stretch; }
+      .gate-input, .gate-btn{ width: 100%; }
     }
 
     ul{
